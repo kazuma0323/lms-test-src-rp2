@@ -9,6 +9,9 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * 結合テスト ログイン機能①
@@ -31,11 +34,14 @@ public class Case03 {
 		closeDriver();
 	}
 
+	ChromeDriver chromeDriver = new ChromeDriver();
+	
 	@Test
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		// TODO ここに追加
+		chromeDriver.get("http://localhost:8080/lms");
 	}
 
 	@Test
@@ -43,6 +49,16 @@ public class Case03 {
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
 		// TODO ここに追加
+		chromeDriver.get("http://localhost:8080/lms");
+		
+		WebElement a = chromeDriver.findElement(By.name("loginId"));
+		a.sendKeys("StudentAA01");
+		
+		WebElement b = chromeDriver.findElement(By.name("password"));
+		b.sendKeys("Kazuma0323");
+		
+		WebElement btn = chromeDriver.findElement(By.name("botton"));
+		btn.click();
 	}
 
 }

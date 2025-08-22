@@ -9,6 +9,10 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * 結合テスト よくある質問機能
@@ -31,11 +35,14 @@ public class Case04 {
 		closeDriver();
 	}
 
+	ChromeDriver chromeDriver = new ChromeDriver();
+	
 	@Test
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		// TODO ここに追加
+		chromeDriver.get("http://localhost:8080/lms");
 	}
 
 	@Test
@@ -43,6 +50,16 @@ public class Case04 {
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
 		// TODO ここに追加
+		chromeDriver.get("http://localhost:8080/lms");
+		
+		WebElement a = chromeDriver.findElement(By.name("loginId"));
+		a.sendKeys("StudentAA01");
+		
+		WebElement b = chromeDriver.findElement(By.name("password"));
+		b.sendKeys("Kazuma0323");
+		
+		WebElement btn = chromeDriver.findElement(By.name("botton"));
+		btn.click();
 	}
 
 	@Test
@@ -50,6 +67,10 @@ public class Case04 {
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
 		// TODO ここに追加
+		
+		final Select select = new Select(chromeDriver.findElement(By.className("dropdown")));
+		
+		select.deselectByVisibleText("ヘルプ");
 	}
 
 	@Test

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * 結合テスト ログイン機能①
@@ -30,12 +31,15 @@ public class Case01 {
 	static void after() {
 		closeDriver();
 	}
-
+	ChromeDriver chromeDriver = new ChromeDriver();
 	@Test
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		// TODO ここに追加
+		
+		
+		chromeDriver.get("http://localhost:8080/lms");
 	}
 
 }

@@ -9,6 +9,9 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * 結合テスト ログイン機能①
@@ -31,18 +34,36 @@ public class Case02 {
 		closeDriver();
 	}
 
+	ChromeDriver chromeDriver = new ChromeDriver();
+	
 	@Test
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		// TODO ここに追加
+		chromeDriver.get("http://localhost:8080/lms");
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
-	void test02() {
+	void test02() throws InterruptedException {
 		// TODO ここに追加
+		chromeDriver.get("http://localhost:8080/lms");
+		
+		WebElement a = chromeDriver.findElement(By.name("loginId"));
+		a.sendKeys("StudentAA10");
+		
+		WebElement b = chromeDriver.findElement(By.name("password"));
+		b.sendKeys("StudentAA10");
+		
+		WebElement btn = chromeDriver.findElement(By.name("botton"));
+		btn.click();
+
+		
+		
+		//Thread.sleep(2000);
+		//loginForm.getLoginId(), loginForm.getPassword()
 	}
 
 }
